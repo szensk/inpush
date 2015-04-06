@@ -1,7 +1,7 @@
 local push   = require 'push'
 local action = require 'action'
 
--- experimental; not in stdlib
+-- experimental; perhaps not useful
 local env = { push = push }
 function push.string(s)
   s = s:gsub("(%w+)([^!%$])", "push.%1.down%2"):gsub("(%w+[!%$])", "push.%1")
@@ -17,10 +17,11 @@ local pastestr = ""
 
 love.load = function()
   push.bind(push.a, action.left) --you can use the key itself
+  push.bind(push.left, action.left) 
   push.bind('q', action.quit) -- or the Love2D string representation
   push.bind('escape', action.quit) -- TODO: allow multiple triggers to the same action
-  push.bind('1', function() love.window.setTitle("Pressed 1") end)
-  push.bind(push'(lctrl | rctrl) & v!', action.paste)
+  push.bind('a', function() love.window.setTitle("Pressed a") end)
+  push.bind(push'(lctrl | rctrl) & v!', action.paste) -- same as below
   --push.bind(function()
   --  return (push.lctrl.down or push.rctrl.down) and push.v.pressed
   --end, action.paste)
