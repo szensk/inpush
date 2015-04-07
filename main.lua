@@ -1,4 +1,4 @@
-local push   = require 'push'
+local push   = require 'inpush'
 local action = require 'action'
 
 -- experimental; perhaps not useful
